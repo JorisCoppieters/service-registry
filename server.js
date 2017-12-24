@@ -23,5 +23,5 @@ app.use(function(req, res) {
   res.status(404).send({url: req.originalUrl + ' not found'})
 });
 
-let port = process.env.PORT || 3000;
+let port = process.env.npm_package_config_port;
 app.listen(port);

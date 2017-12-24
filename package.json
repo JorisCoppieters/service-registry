@@ -5,8 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start-db": "mongod --dbpath=./ --port 27017",
+    "prestart": "mkdirp ./db && mongod --dbpath=./db --port 27017 &",
     "start": "nodemon server.js"
+  },
+  "config": {
+    "port": "3000"
   },
   "repository": {
     "type": "git",
