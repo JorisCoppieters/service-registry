@@ -8,6 +8,7 @@
 
 let mongoose = require('mongoose');
 
+let dataTypes = require('./utils/dataTypes');
 let validate = require('./utils/validate');
 
 // ******************************
@@ -43,20 +44,35 @@ function createService (req, res) {
     return res.send(validationErrors);
   }
 
-  newService.save((err, service) => {
-    if (err) {
-      return res.send({ success: false, errors: [err] });
-    } if (!service) {
-      return res.send({
-        success: false
+  dataTypes
+    .find(newService.inputs.concat(newService.output))
+    .then(allResults => {
+      let dataTypeIdsNotFound = allResults.filter(results => !results.found);
+      if (dataTypeIdsNotFound && dataTypeIdsNotFound.length) {
+        return res.send({
+          success: false,
+          errors:
+            dataTypeIdsNotFound
+              .map(dataTypeIdNotFound => 'Invalid data type id: ' + dataTypeIdNotFound.dataTypeId)
+              .reduce((a, dataTypeIdNotFound) => a.concat(dataTypeIdNotFound), [])
+        });
+        return
+      }
+      newService.save((err, service) => {
+        if (err) {
+          return res.send({ success: false, errors: [err] });
+        } if (!service) {
+          return res.send({
+            success: false
+          });
+        } else {
+          return res.send({
+            success: true,
+            id: service._id
+          });
+        }
       });
-    } else {
-      return res.send({
-        success: true,
-        id: service._id
-      });
-    }
-  });
+    });
 }
 
 // ******************************

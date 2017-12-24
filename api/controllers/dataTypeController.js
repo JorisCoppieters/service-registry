@@ -8,6 +8,7 @@
 
 let mongoose = require('mongoose');
 
+let dataTypes = require('./utils/dataTypes');
 let validate = require('./utils/validate');
 
 // ******************************
@@ -74,19 +75,9 @@ function findDataType (req, res) {
 // ******************************
 
 function deleteDataType (req, res) {
-  Promise
-    .all([
-      WebService
-        .find({ $or: [ { output: req.params.dataTypeId }, { inputs: req.params.dataTypeId } ] })
-        .then(results => results.length),
-
-      FunctionService
-        .find({ $or: [ { output: req.params.dataTypeId }, { inputs: req.params.dataTypeId } ] })
-        .then(results => results.length)
-    ])
-    .then(results => results.reduce((a, b) => a + b))
-    .then(totalResults => {
-      if (totalResults > 0) {
+  dataTypes.inUse(req.params.dataTypeId)
+    .then(inUse => {
+      if (inUse) {
         return res.json({ success: false, message: 'DataType is being used' });
       }
 
