@@ -1,6 +1,6 @@
 {
   "name": "jc-service-registry",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "A service registry server",
   "main": "server.js",
   "scripts": {
@@ -25,10 +25,8 @@
     "url": "https://github.com/JorisCoppieters/service-registry/issues"
   },
   "homepage": "https://github.com/JorisCoppieters/service-registry#readme",
-  "devDependencies": {
-    "nodemon": "^1.14.3"
-  },
   "dependencies": {
+    "nodemon": "^1.14.3",
     "express": "^4.16.2",
     "mongoose": "^4.13.7"
   }
