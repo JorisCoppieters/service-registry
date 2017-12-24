@@ -1,14 +1,16 @@
 {
   "name": "jc-service-registry",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "A service registry server",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "bash ./scripts/start-server.sh"
+    "prestart": "bash ./scripts/start-db.sh",
+    "start": "nodemon server.js"
   },
+  "preferGlobal": "true",
   "bin": {
-    "registry": "./scripts/start-server.sh"
+    "registry": "npm start"
   },
   "config": {
     "port": "3000"
