@@ -1,6 +1,27 @@
 'use strict';
+
+// ******************************
+//
+// IMPORTS:
+//
+// ******************************
+
 let mongoose = require('mongoose');
+
+// ******************************
+//
+// OBJECTS:
+//
+// ******************************
+
 let Schema = mongoose.Schema;
+let ObjectID = mongoose.Schema.Types.ObjectId;
+
+// ******************************
+//
+// SCHEMA:
+//
+// ******************************
 
 let WebServiceSchema = new Schema({
   created: {
@@ -16,7 +37,8 @@ let WebServiceSchema = new Schema({
     items: {
       properties: {
         input: {
-          type: Number
+          type: ObjectID,
+          ref: 'DataType'
         },
         requestDataKey: {
           type: String
@@ -31,7 +53,8 @@ let WebServiceSchema = new Schema({
   },
   inputs: {
     items: {
-      type: String
+      type: ObjectID,
+      ref: 'DataType'
     },
     type: Array,
     required: true
@@ -61,17 +84,20 @@ let WebServiceSchema = new Schema({
   },
   name: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   output: {
-    type: String,
-    required: true
+    type: ObjectID,
+    required: true,
+    ref: 'DataType'
   },
   outputMappings: {
     items: {
       properties: {
         output: {
-          type: Number
+          type: ObjectID,
+          ref: 'DataType'
         },
         responseDataKey: {
           type: String
@@ -86,7 +112,8 @@ let WebServiceSchema = new Schema({
   },
   url: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   }
 });
 

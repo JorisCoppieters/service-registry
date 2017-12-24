@@ -1,5 +1,11 @@
 'use strict';
 
+// ******************************
+//
+// EXPORTS:
+//
+// ******************************
+
 module.exports = (object) => {
   let validationErrors = object.validateSync();
   if (!validationErrors || !validationErrors.errors) {
@@ -17,3 +23,5 @@ module.exports = (object) => {
       })
   };
 };
+
+// ******************************

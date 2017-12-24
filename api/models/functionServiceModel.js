@@ -1,8 +1,30 @@
 'use strict';
+
+// ******************************
+//
+// IMPORTS:
+//
+// ******************************
+
 let mongoose = require('mongoose');
+
+// ******************************
+//
+// OBJECTS:
+//
+// ******************************
+
 let Schema = mongoose.Schema;
+let ObjectID = mongoose.Schema.Types.ObjectId;
+
+// ******************************
+//
+// SCHEMA:
+//
+// ******************************
 
 let FunctionServiceSchema = new Schema({
+  additionalProperties: false,
   created: {
     type: Date,
     default: Date.now
@@ -14,7 +36,8 @@ let FunctionServiceSchema = new Schema({
   },
   inputs: {
     items: {
-      type: String
+      type: ObjectID,
+      ref: 'DataType'
     },
     type: Array,
     required: true
@@ -39,11 +62,13 @@ let FunctionServiceSchema = new Schema({
   },
   name: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   output: {
-    type: String,
-    required: true
+    type: ObjectID,
+    required: true,
+    ref: 'DataType'
   },
   snippet: {
     type: String,

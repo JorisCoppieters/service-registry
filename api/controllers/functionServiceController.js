@@ -9,7 +9,6 @@
 let mongoose = require('mongoose');
 
 let validate = require('./utils/validate');
-let dataType = require('./utils/dataType');
 
 // ******************************
 //
@@ -33,7 +32,7 @@ function getAllServices (req, res) {
     }
     res.json(service);
   });
-};
+}
 
 // ******************************
 
@@ -44,31 +43,16 @@ function createService (req, res) {
     return res.send(validationErrors);
   }
 
-  dataType
-    .find(newService.inputs.concat(newService.output))
-    .then(allResults => {
-      let dataTypeIdsNotFound = allResults.filter(results => !results.found);
-      if (dataTypeIdsNotFound && dataTypeIdsNotFound.length) {
-        return res.send({
-          success: false,
-          errors:
-            dataTypeIdsNotFound
-              .map(dataTypeIdNotFound => 'Invalid data type id: ' + dataTypeIdNotFound.dataTypeId)
-              .reduce((a, dataTypeIdNotFound) => a.concat(dataTypeIdNotFound), [])
-        });
-        return
-      }
-      newService.save((err, service) => {
-        if (err) {
-          res.send({ success: false, errors: [err] });
-        }
-        res.send({
-          success: true,
-          id: service._id
-        });
-      });
-    })
-};
+  newService.save((err, service) => {
+    if (err) {
+      res.send({ success: false, errors: [err] });
+    }
+    res.send({
+      success: true,
+      id: service._id
+    });
+  });
+}
 
 // ******************************
 
@@ -79,7 +63,7 @@ function findService (req, res) {
     }
     res.json(service);
   });
-};
+}
 
 // ******************************
 
@@ -102,7 +86,7 @@ function deleteService (req, res) {
       );
     }
   });
-};
+}
 
 // ******************************
 //

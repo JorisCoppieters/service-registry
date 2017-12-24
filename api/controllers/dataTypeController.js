@@ -33,7 +33,7 @@ function getAllDataTypes (req, res) {
     }
     res.json(dataType);
   });
-};
+}
 
 // ******************************
 
@@ -53,7 +53,7 @@ function createDataType (req, res) {
       id: dataType._id
     });
   });
-};
+}
 
 // ******************************
 
@@ -64,7 +64,7 @@ function findDataType (req, res) {
     }
     res.json(dataType);
   });
-};
+}
 
 // ******************************
 
@@ -104,7 +104,7 @@ function deleteDataType (req, res) {
         }
       });
     });
-};
+}
 
 // ******************************
 //
