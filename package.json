@@ -1,6 +1,6 @@
 {
   "name": "jc-service-registry",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "A service registry server",
   "main": "server.js",
   "scripts": {
@@ -10,7 +10,7 @@
   },
   "preferGlobal": "true",
   "bin": {
-    "registry": "npm start"
+    "registry": "bash ./scripts/start-server.sh"
   },
   "config": {
     "port": "3000"
