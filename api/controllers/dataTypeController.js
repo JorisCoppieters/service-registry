@@ -46,12 +46,17 @@ function createDataType (req, res) {
 
   newDataType.save((err, dataType) => {
     if (err) {
-      res.send({ success: false, errors: [err] });
+      return res.send({ success: false, errors: [err] });
+    } if (!dataType) {
+      return res.send({
+        success: false
+      });
+    } else {
+      return res.send({
+        success: true,
+        id: dataType._id
+      });
     }
-    res.send({
-      success: true,
-      id: dataType._id
-    });
   });
 }
 
@@ -60,9 +65,9 @@ function createDataType (req, res) {
 function findDataType (req, res) {
   DataType.findById(req.params.dataTypeId, (err, dataType) => {
     if (err) {
-      res.send({ success: false, errors: [err] });
+      return res.send({ success: false, errors: [err] });
     }
-    res.json(dataType);
+    return res.json(dataType);
   });
 }
 
@@ -89,15 +94,15 @@ function deleteDataType (req, res) {
         _id: req.params.dataTypeId
       }, (err, dataType) => {
         if (err) {
-          res.send({ success: false, errors: [err] });
+          return res.send({ success: false, errors: [err] });
         }
         if (dataType.result.n) {
-          res.json({
+          return res.json({
             success: true,
             message: 'DataType successfully deleted' }
           );
         } else {
-          res.json({
+          return res.json({
             success: true,
             message: 'DataType not found' }
           );

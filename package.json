@@ -8,6 +8,9 @@
     "prestart": "bash ./scripts/start-db.sh &",
     "start": "nodemon server.js"
   },
+  "bin": {
+    "service-registry": "bash ./scripts/start-db.sh && nodemon server.js"
+  },
   "config": {
     "port": "3000"
   },

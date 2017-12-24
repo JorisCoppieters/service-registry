@@ -24,6 +24,7 @@ let ObjectID = mongoose.Schema.Types.ObjectId;
 // ******************************
 
 let WebServiceSchema = new Schema({
+  additionalProperties: false,
   created: {
     type: Date,
     default: Date.now

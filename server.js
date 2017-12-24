@@ -1,3 +1,12 @@
+#!/usr/bin/env node
+'use strict'; // JS: ES6
+
+// ******************************
+//
+// SERVICE-REGISTRY v0.1.0
+//
+// ******************************
+
 let mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/Servicedb', {

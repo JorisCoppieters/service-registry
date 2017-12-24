@@ -45,12 +45,17 @@ function createService (req, res) {
 
   newService.save((err, service) => {
     if (err) {
-      res.send({ success: false, errors: [err] });
+      return res.send({ success: false, errors: [err] });
+    } if (!service) {
+      return res.send({
+        success: false
+      });
+    } else {
+      return res.send({
+        success: true,
+        id: service._id
+      });
     }
-    res.send({
-      success: true,
-      id: service._id
-    });
   });
 }
 
@@ -59,9 +64,9 @@ function createService (req, res) {
 function findService (req, res) {
   Service.findById(req.params.serviceId, (err, service) => {
     if (err) {
-      res.send({ success: false, errors: [err] });
+      return res.send({ success: false, errors: [err] });
     }
-    res.json(service);
+    return res.json(service);
   });
 }
 
@@ -72,15 +77,15 @@ function deleteService (req, res) {
     _id: req.params.serviceId
   }, (err, service) => {
     if (err) {
-      res.send({ success: false, errors: [err] });
+      return res.send({ success: false, errors: [err] });
     }
     if (service.result.n) {
-      res.json({
+      return res.json({
         success: true,
         message: 'WebService successfully deleted' }
       );
     } else {
-      res.json({
+      return res.json({
         success: true,
         message: 'WebService not found' }
       );
