@@ -1,6 +1,6 @@
 # service-registry
 
-service-registry is a Node utility for creating/deploying/managing services really quickly
+service-registry is a server registering web services and function services
 
 ### Installation
 
