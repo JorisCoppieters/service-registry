@@ -4,7 +4,9 @@
   "description": "A service registry server",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start-db": "mongod --dbpath=./ --port 27017",
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +17,12 @@
   "bugs": {
     "url": "https://github.com/JorisCoppieters/service-registry/issues"
   },
-  "homepage": "https://github.com/JorisCoppieters/service-registry#readme"
+  "homepage": "https://github.com/JorisCoppieters/service-registry#readme",
+  "devDependencies": {
+    "nodemon": "^1.14.3"
+  },
+  "dependencies": {
+    "express": "^4.16.2",
+    "mongoose": "^4.13.7"
+  }
 }
