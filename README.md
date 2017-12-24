@@ -9,11 +9,5 @@ service-registry requires [Node.js](https://nodejs.org/) v4+ and [mongodb](https
 Then:
 
 ```sh
-$ npm install -g service-registry
+$ npm install -g jc-service-registry
 ```
-
-To run it, simply type ```svr``` in your service folder to get information on your service
-
-Run ```svr init``` to create service.json, which is your configuration file
-
-Run ```svr help``` to see more options

@@ -1,6 +1,6 @@
 {
   "name": "jc-service-registry",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A service registry server",
   "main": "index.js",
   "scripts": {
@@ -9,7 +9,7 @@
     "start": "nodemon server.js"
   },
   "bin": {
-    "registry": "bash ./scripts/start-db.sh && nodemon server.js"
+    "registry": "./scripts/start-server.sh"
   },
   "config": {
     "port": "3000"
