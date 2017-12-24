@@ -25,7 +25,7 @@ function ask {
 }
 
 echo "Updating version number in files..."
-sed -i "s/\/\/ SERVICE-REGISTRY v.*/\/\/ SERVICE-REGISTRY v$VERSION/g" index.js
+sed -i "s/\/\/ SERVICE-REGISTRY v.*/\/\/ SERVICE-REGISTRY v$VERSION/g" server.js
 sed -i "s/\"version\": \".*\",/\"version\": \"$VERSION\",/g" package.json
 
 if [[ `ask "Do you want to publish $VERSION?" && echo true` == true ]]; then
