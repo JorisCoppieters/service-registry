@@ -8,6 +8,6 @@ module.exports = (app) => {
     .post(functionService.create);
 
   app.route('/functionServices/:serviceId')
-    .get(functionService.find)
+    .get(functionService.get)
     .delete(functionService.delete);
 };

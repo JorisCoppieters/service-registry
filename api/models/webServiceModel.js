@@ -24,7 +24,6 @@ let ObjectID = mongoose.Schema.Types.ObjectId;
 // ******************************
 
 let WebServiceSchema = new Schema({
-  additionalProperties: false,
   created: {
     type: Date,
     default: Date.now
@@ -70,6 +69,7 @@ let WebServiceSchema = new Schema({
     required: true
   },
   metrics: {
+    strict: true,
     properties: {
       accuracy: {
         type: Number

@@ -8,6 +8,10 @@ module.exports = (app) => {
     .post(webService.create);
 
   app.route('/webServices/:serviceId')
-    .get(webService.find)
+    .get(webService.get)
     .delete(webService.delete);
+
+  app.route('/webServices/:serviceId/metrics')
+    .get(webService.getMetrics)
+    .put(webService.updateMetrics);
 };

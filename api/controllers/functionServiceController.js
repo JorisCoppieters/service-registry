@@ -26,6 +26,17 @@ let Service = mongoose.model('FunctionService');
 //
 // ******************************
 
+function getService (req, res) {
+  Service.findById(req.params.serviceId, (err, service) => {
+    if (err) {
+      return res.send({ success: false, errors: [err] });
+    }
+    return res.json(service);
+  });
+}
+
+// ******************************
+
 function getAllServices (req, res) {
   Service.find({}, (err, service) => {
     if (err) {
@@ -77,17 +88,6 @@ function createService (req, res) {
 
 // ******************************
 
-function findService (req, res) {
-  Service.findById(req.params.serviceId, (err, service) => {
-    if (err) {
-      return res.send({ success: false, errors: [err] });
-    }
-    return res.json(service);
-  });
-}
-
-// ******************************
-
 function deleteService (req, res) {
   Service.remove({
     _id: req.params.serviceId
@@ -115,9 +115,9 @@ function deleteService (req, res) {
 //
 // ******************************
 
+module.exports['get'] = getService;
 module.exports['getAll'] = getAllServices;
 module.exports['create'] = createService;
-module.exports['find'] = findService;
 module.exports['delete'] = deleteService;
 
 // ******************************
